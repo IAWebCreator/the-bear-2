@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the bear ($TB) - The Loudest Fart of the Jungle</title>
+    <meta name="description" content="A force of nature. A sound that ripples through the market. The Bear is an undeniable presence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Basic Setup */
+        :root {
+            --orange: #FF6A00;
+            --black: #121212;
+            --dark-gray: #1E1E1E;
+            --light-gray: #B3B3B3;
+            --white: #FFFFFF;
+            --font-primary: 'Oswald', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* General Styling */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            line-height: 1.2;
+            color: var(--orange);
+        }
+
+        h1 { font-size: clamp(3rem, 10vw, 6rem); }
+        h2 { font-size: clamp(2.5rem, 8vw, 4rem); }
+        h3 { font-size: clamp(1.5rem, 5vw, 2rem); }
+
+        p {
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+            max-width: 60ch;
+        }
+
+        section {
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 106, 0, 0.2);
+        }
+
+        .header-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--orange);
+            color: var(--black);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #ff8533;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px; /* Header height */
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 1rem;
+            animation: subtle-rumble 8s ease-in-out infinite;
+        }
+
+        @keyframes subtle-rumble {
+            0%, 100% { transform: translate(0, 0) rotate(0); }
+            2% { transform: translate(-1px, 1px) rotate(-0.2deg); }
+            4% { transform: translate(1px, -1px) rotate(0.2deg); }
+            6% { transform: translate(-1px, 1px) rotate(0); }
+            8% { transform: translate(1px, -1px) rotate(-0.2deg); }
+            10% { transform: translate(0, 0) rotate(0); }
+        }
+
+        .hero-title {
+            color: var(--white);
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.2rem, 4vw, 1.75rem);
+            color: var(--orange);
+            margin-bottom: 2rem;
+        }
+
+        .contract-address {
+            background-color: var(--dark-gray);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 106, 0, 0.3);
+        }
+
+        .contract-address span {
+            font-family: monospace;
+            color: var(--light-gray);
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: var(--orange);
+            color: var(--black);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #ff8533;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            margin-bottom: 1rem;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 250px;
+            width: 100%;
+            filter: drop-shadow(0 0 30px rgba(255, 106, 0, 0.3));
+        }
+
+        /* Tokenomics Section */
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tokenomics-card {
+            background-color: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 106, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tokenomics-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tokenomics-card .value {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .tokenomics-card .label {
+            font-size: 1rem;
+            color: var(--light-gray);
+            font-weight: 600;
+        }
+
+        /* How to Buy Section */
+        .how-to-buy-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            background: var(--dark-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .step-number {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .step-content h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Roadmap Section */
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--orange);
+            opacity: 0.3;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .roadmap-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        .roadmap-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .roadmap-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .roadmap-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--black);
+            border: 4px solid var(--orange);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .roadmap-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .roadmap-content {
+            padding: 20px 30px;
+            background-color: var(--dark-gray);
+            position: relative;
+            border-radius: 8px;
+        }
+        
+        .roadmap-content h3 {
+            color: var(--white);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-gray);
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .footer p {
+            font-size: 0.875rem;
+            color: var(--light-gray);
+            max-width: 70ch;
+            margin: 0.5rem auto;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-text {
+                order: 2;
+            }
+            .about-image {
+                order: 1;
+            }
+            .roadmap-timeline::after {
+                left: 20px;
+            }
+            .roadmap-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 15px;
+                text-align: left !important;
+            }
+            .roadmap-item:nth-child(even) {
+                left: 0%;
+            }
+            .roadmap-item::after {
+                left: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="header-logo">
+            <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/24d82adb-e210-42e0-ba77-b55978d7d5a1.png?" alt="The Bear Logo">
+        </a>
+        <a href="#how-to-buy" class="btn">Buy $TB</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/24d82adb-e210-42e0-ba77-b55978d7d5a1.png?" alt="The Bear" class="hero-logo">
+                <h1 class="hero-title">the bear</h1>
+                <h2 class="hero-tagline">the loudest fart of the jungle</h2>
+                <p>A sound that can't be ignored. A presence that shakes the ground.</p>
+                <div class="contract-address">
+                    <span>Contract:</span>
+                    <span id="contractAddress">0xFf7d6A96ae471BbCD7713aF9CB1fEeB16cf56B41</span>
+                    <button class="copy-btn" id="copyButton">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2 class="section-title" style="text-align: left;">RAW. UNFILTERED. IMPACT.</h2>
+                    <h3>This is the sound of disruption.</h3>
+                    <p>In a world of quiet whispers and careful steps, The Bear arrives with a deafening roar. Or something like it. It's the force you feel before you see it, an undeniable event that changes the atmosphere. It's simple, powerful, and commands your full attention.</p>
+                    <p>We're not building a quiet corner of the forest. We're creating a shockwave. $TB is the raw energy of the wild, captured in a token.</p>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/24d82adb-e210-42e0-ba77-b55978d7d5a1.png?" alt="The Bear silhouette">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section id="tokenomics">
+        <div class="container">
+            <h2 class="section-title fade-in">The Anatomy of the Roar</h2>
+            <div class="tokenomics-grid">
+                <div class="tokenomics-card fade-in" style="transition-delay: 0.1s;">
+                    <div class="value">1B</div>
+                    <div class="label">Total Supply</div>
+                </div>
+                <div class="tokenomics-card fade-in" style="transition-delay: 0.2s;">
+                    <div class="value">0%</div>
+                    <div class="label">Buy & Sell Tax</div>
+                </div>
+                <div class="tokenomics-card fade-in" style="transition-delay: 0.3s;">
+                    <div class="value">100%</div>
+                    <div class="label">Liquidity Locked</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Buy Section -->
+    <section id="how-to-buy">
+        <div class="container">
+            <h2 class="section-title fade-in">Catch the Scent</h2>
+            <div class="how-to-buy-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Get a Wallet</h3>
+                        <p>Download a crypto wallet like MetaMask or Trust Wallet from the app store or their official website. Keep your seed phrase safe and secret.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Fund Your Wallet</h3>
+                        <p>You'll need some Ethereum (ETH) to swap for $TB. Buy ETH directly in your wallet or transfer it from an exchange like Coinbase or Binance.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Go to Uniswap</h3>
+                        <p>Connect your wallet to Uniswap. In the 'To' field, paste the $TB contract address. The world's most powerful fart will appear.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Swap for $TB</h3>
+                        <p>Enter the amount of ETH you wish to swap for $TB. Confirm the transaction in your wallet and welcome to the jungle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+        <div class="container">
+            <h2 class="section-title fade-in">The Path of the Beast</h2>
+            <div class="roadmap-timeline">
+                <div class="roadmap-item fade-in">
+                    <div class="roadmap-content">
+                        <h3>Phase 1: The Rumble</h3>
+                        <p>The initial release. The contract is deployed, liquidity is locked, and the first sound waves begin to travel. The jungle holds its breath.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item fade-in">
+                    <div class="roadmap-content">
+                        <h3>Phase 2: The Echo</h3>
+                        <p>The sound spreads. Community building and strategic marketing make the presence of The Bear known far and wide. The echo becomes impossible to ignore.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item fade-in">
+                    <div class="roadmap-content">
+                        <h3>Phase 3: The Shockwave</h3>
+                        <p>Unleashing the full force. Development of unique utilities that amplify our impact. The ground itself will shake.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/24d82adb-e210-42e0-ba77-b55978d7d5a1.png?" alt="The Bear Logo">
+        </div>
+        <h2>the bear ($TB)</h2>
+        <p>$TB is a meme coin with no intrinsic value or expectation of financial return. It is a community-driven project for entertainment purposes only. Always do your own research.</p>
+        <p>&copy; 2024 The Bear. All rights reserved. The jungle is ours.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Copy to Clipboard functionality
+            const copyButton = document.getElementById('copyButton');
+            const contractAddress = document.getElementById('contractAddress').innerText;
+
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(contractAddress).then(() => {
+                    copyButton.innerText = 'Copied!';
+                    setTimeout(() => {
+                        copyButton.innerText = 'Copy';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+
+            // On-scroll fade-in animations
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.2,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+
+</body>
+</html>
